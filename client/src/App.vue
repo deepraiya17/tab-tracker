@@ -1,17 +1,18 @@
 <template>
   <v-app>
+    <page-header></page-header>
     <v-main>
-      <router-view />
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import PageHeader from "./components/Header.vue";
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  components: { PageHeader },
 };
 </script>

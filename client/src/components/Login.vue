@@ -3,7 +3,7 @@
     <v-flex xs6 offset-xs3>
       <div class="mt-5 white elevation-2">
         <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 py-5 text-center">
           <v-text-field v-model="email" label="Email" />
@@ -12,7 +12,7 @@
           <br />
           <div class="error white--text" v-html="error" />
           <br />
-          <v-btn color="cyan" dark @click="register">Register</v-btn>
+          <v-btn color="cyan" dark @click="login">Login</v-btn>
         </div>
       </div>
     </v-flex>
@@ -29,13 +29,15 @@ export default {
     };
   },
   methods: {
-    async register() {
+    async login() {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password,
         });
-        console.log(response.data);
+        // console.log({ token: response.data.token });
+        this.$store.dispatch("setToken", { token: response.data.token });
+        this.$store.dispatch("setUser", { user: response.data.user });
       } catch (err) {
         this.error = err.response.data.error;
       }
