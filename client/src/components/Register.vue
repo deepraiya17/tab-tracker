@@ -1,25 +1,21 @@
 <template>
   <v-layout row mt-5>
     <v-flex xs6 offset-xs3>
-      <div class="mt-5 white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 py-5 text-center">
-          <v-text-field v-model="email" label="Email" />
-          <br />
-          <v-text-field label="Password" v-model="password" type="password" />
-          <br />
-          <div class="error white--text" v-html="error" />
-          <br />
-          <v-btn color="cyan" dark @click="register">Register</v-btn>
-        </div>
-      </div>
+      <panel title="Register">
+        <v-text-field v-model="email" label="Email" />
+        <br />
+        <v-text-field label="Password" v-model="password" type="password" />
+        <br />
+        <div class="error white--text" v-html="error" />
+        <br />
+        <v-btn color="cyan" dark @click="register">Register</v-btn>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 <script>
 import AuthenticationService from "../services/AuthenticationService.js";
+import Panel from "./Panel.vue";
 export default {
   data() {
     return {
@@ -28,6 +24,7 @@ export default {
       error: null,
     };
   },
+  components: { Panel },
   methods: {
     async register() {
       try {
