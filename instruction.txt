@@ -1,0 +1,15 @@
+Open the folder in Command Promt (cmd-1).
+Go to extracted folder using cd.
+Then "cd server"
+"npm i --save"
+"npm start".
+
+Open the folder in Command Promt (cmd-2).
+Go to extracted folder using cd.
+Then "cd client".
+"npm i --save"
+"npm run serve"
+
+Your website is now running.
+Open chrome.
+Go to "localhost:8080"
