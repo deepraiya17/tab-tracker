@@ -15,9 +15,7 @@
 </template>
 <script>
 import AuthenticationService from "../services/AuthenticationService.js";
-import Panel from "./Panel.vue";
 export default {
-  components: { Panel },
   data() {
     return {
       email: "",
@@ -34,6 +32,7 @@ export default {
         });
         this.$store.dispatch("setToken", { token: response.data.token });
         this.$store.dispatch("setUser", { user: response.data.user });
+        this.$router.push("/songs");
       } catch (err) {
         this.error = err.response.data.error;
       }

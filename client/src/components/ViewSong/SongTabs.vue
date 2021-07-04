@@ -1,13 +1,11 @@
 <template>
-  <panel title="Guitar Tabs for Song">
+  <panel title="Guitar Tabs for Song" class="ml-3">
     <textarea v-model="tab" class="tabs"></textarea>
   </panel>
 </template>
 
 <script>
-import Panel from "../Panel.vue";
 export default {
-  components: { Panel },
   props: ["tab"],
 };
 </script>

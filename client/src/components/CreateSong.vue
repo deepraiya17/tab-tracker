@@ -2,12 +2,40 @@
   <v-layout row>
     <v-flex xs4>
       <panel class="ml-5" title="Song Metadata">
-        <v-text-field v-model="song.title" label="Title" />
-        <v-text-field v-model="song.artist" label="Artist" />
-        <v-text-field v-model="song.genre" label="Genre" />
-        <v-text-field v-model="song.album" label="Album" />
-        <v-text-field v-model="song.albumImageUrl" label="Album Image Url" />
-        <v-text-field v-model="song.youtubeId" label="Youtube ID" />
+        <v-text-field v-model="song.title" class="required"
+          ><template #label
+            >Title<span class="red--text"><strong>* </strong></span></template
+          ></v-text-field
+        >
+        <v-text-field v-model="song.artist"
+          ><template #label
+            >Artist<span class="red--text"><strong>* </strong></span></template
+          ></v-text-field
+        >
+        <v-text-field v-model="song.genre"
+          ><template #label
+            >Genre<span class="red--text"><strong>* </strong></span></template
+          ></v-text-field
+        >
+        <v-text-field v-model="song.album"
+          ><template #label
+            >Album<span class="red--text"><strong>* </strong></span></template
+          ></v-text-field
+        >
+        <v-text-field v-model="song.albumImageUrl"
+          ><template #label
+            >Album Image Url<span class="red--text"
+              ><strong>* </strong></span
+            ></template
+          ></v-text-field
+        >
+        <v-text-field v-model="song.youtubeId"
+          ><template #label
+            >Youtube Id<span class="red--text"
+              ><strong>* </strong></span
+            ></template
+          ></v-text-field
+        >
       </panel>
     </v-flex>
 
@@ -26,10 +54,8 @@
 </template>
 
 <script>
-import Panel from "./Panel.vue";
 import SongsServices from "../services/SongsServices";
 export default {
-  components: { Panel },
   data() {
     return {
       song: {
@@ -47,11 +73,14 @@ export default {
   },
   methods: {
     async create() {
-      const areAllFieldsFilledIn = Object.keys(this.song).every(
-        (key) => !!this.song[key]
-      );
-      if (!areAllFieldsFilledIn) {
-        this.error = "Please fill in all the fields";
+      const areAllRequiredFieldsFilledIn =
+        !!this.song.title &&
+        !!this.song.artist &&
+        !!this.song.album &&
+        !!this.song.albumImageUrl &&
+        !!this.song.youtubeId;
+      if (!areAllRequiredFieldsFilledIn) {
+        this.error = "Please fill in all the required fields(marked with *)";
         return;
       }
       try {

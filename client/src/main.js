@@ -4,8 +4,10 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import VueYouTubeEmbed from "vue-youtube-embed";
-Vue.use(VueYouTubeEmbed);
+import Panel from "./components/globals/Panel.vue";
 
+Vue.use(VueYouTubeEmbed);
+Vue.component("panel", Panel);
 Vue.config.productionTip = false;
 
 new Vue({
