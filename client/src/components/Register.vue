@@ -30,7 +30,6 @@ export default {
           email: this.email,
           password: this.password,
         });
-        this.$store.dispatch("setToken", { token: response.data.token });
         this.$store.dispatch("setUser", { user: response.data.user });
         this.$router.push("/songs");
       } catch (err) {

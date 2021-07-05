@@ -1,5 +1,4 @@
 const { User } = require('../models');
-const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
 function jwtSignUser(user) {
@@ -16,7 +15,6 @@ module.exports = {
       const userJson = user.toJSON();
       res.send({
         user: userJson,
-        token: jwtSignUser(userJson),
       });
     } catch (err) {
       res.status(400).send({
@@ -47,7 +45,6 @@ module.exports = {
       const userJson = user.toJSON();
       res.send({
         user: userJson,
-        token: jwtSignUser(userJson),
       });
     } catch (err) {
       res.status(500).send({

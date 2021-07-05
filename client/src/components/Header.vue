@@ -23,7 +23,6 @@
 export default {
   methods: {
     logout() {
-      this.$store.dispatch("setToken", { token: null });
       this.$store.dispatch("setUser", { user: null });
       this.$router.push("login");
     },
