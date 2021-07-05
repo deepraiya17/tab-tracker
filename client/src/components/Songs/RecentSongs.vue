@@ -1,10 +1,15 @@
 <template>
   <panel title="Recent Songs">
+    <v-text-field
+      v-model="search"
+      label="Search by title/artist"
+    ></v-text-field>
     <v-data-table
       :headers="headers"
       :items="recentSongs"
       :sort-by="['recentSongId']"
       :sort-desc="[true]"
+      :search="search"
     >
       <template slot="items" scope="props">
         <td>{{ props.item.title }}</td>
@@ -19,8 +24,7 @@ import RecentSongsService from "../../services/RecentSongsService";
 export default {
   data() {
     return {
-      sortDesc: false,
-      sortBy: "createdAt",
+      search: "",
       headers: [
         { text: "Title", value: "title" },
         { text: "Artist", value: "artist" },
