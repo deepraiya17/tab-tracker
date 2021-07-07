@@ -28,13 +28,16 @@ export default {
   },
   async mounted() {
     try {
+      // console.log(this.);
       const songId = this.$route.params.songId;
-      const userId = this.$store.state.user.id;
       this.song = (await SongServices.show(songId)).data;
-      await RecentSongsService.post({
-        songId: songId,
-        userId: userId,
-      });
+      if (this.$store.state.isUserLoggedIn) {
+        const userId = this.$store.state.user.id;
+        await RecentSongsService.post({
+          songId: songId,
+          userId: userId,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
