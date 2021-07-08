@@ -10,7 +10,7 @@
       to="/songs/create"
       class="cyan accent-5 white--text"
     >
-      <span class="add">+</span>
+      <h1 class="add">+</h1>
     </v-btn>
     <div v-for="song in songs" :key="song.id">
       <v-layout>

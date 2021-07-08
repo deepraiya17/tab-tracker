@@ -1,22 +1,28 @@
 <template>
-  <v-toolbar class="cyan" dark fluid>
-    <v-toolbar-items>
-      <v-btn class="cyan mr-3" to="/">TabTracker</v-btn>
-      <v-btn class="cyan" to="/songs"> Browse </v-btn>
-    </v-toolbar-items>
+  <v-app-bar app color="cyan" dark>
+    <div class="ml-5 mr-5" @click="changeRoute('/abc')">
+      <v-app-bar-title>TAB TRACKER</v-app-bar-title>
+    </div>
+    <div @click="changeRoute('/songs')" class="ml-5 mr-5">Browse</div>
     <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <v-btn class="cyan mr-3" v-if="!$store.state.isUserLoggedIn" to="/login">
-        Login
-      </v-btn>
-      <v-btn v-if="!$store.state.isUserLoggedIn" to="/register" class="cyan">
-        Sign Up
-      </v-btn>
-      <v-btn v-if="$store.state.isUserLoggedIn" class="cyan" @click="logout"
-        >Log Out</v-btn
-      >
-    </v-toolbar-items>
-  </v-toolbar>
+    <div
+      class="ml-5 mr-5"
+      v-if="!$store.state.isUserLoggedIn"
+      @click="changeRoute('/login')"
+    >
+      Login
+    </div>
+    <div
+      class="ml-5 mr-5"
+      v-if="!$store.state.isUserLoggedIn"
+      @click="changeRoute('/register')"
+    >
+      Sign Up
+    </div>
+    <div class="ml-5 mr-5" v-if="$store.state.isUserLoggedIn" @click="logout">
+      Log Out
+    </div>
+  </v-app-bar>
 </template>
 
 <script>
@@ -25,6 +31,11 @@ export default {
     logout() {
       this.$store.dispatch("setUser", { user: null });
       this.$router.push("login");
+    },
+    changeRoute(route) {
+      if (this.$route.path !== route) {
+        this.$router.push(route);
+      }
     },
   },
 };
